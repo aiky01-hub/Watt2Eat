@@ -8,7 +8,7 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from "@/components/ui/breadcrumb";
 import { useNavigate, useParams } from 'react-router-dom';
 import { Minus, Plus } from 'lucide-react';
 
@@ -17,10 +17,6 @@ const OrderSummary = () => {
     const { selectedAdvert, fetchAdvertById, isAdvertLoading } = useAdvertStore()
     const { addToCart, cartItems, updateQuantity, getTotalPrice } = useCartStore(); // Cart actions
     const { id } = useParams()
-
-    const handleOnClick = () => {
-        navigate(`/advert/${id}`)
-    }
 
     return (
         <div className="flex flex-col h-full w-full relative bg-white items-center">
@@ -36,7 +32,7 @@ const OrderSummary = () => {
                 <Breadcrumb className="mt-4 flex justify-center items-center">
                     <BreadcrumbList>
                         <BreadcrumbItem>
-                            <BreadcrumbLink onClick={handleOnClick} className="cursor-pointer">Menu</BreadcrumbLink>
+                            <BreadcrumbLink onClick={() => {navigate(`/advert/${id}`)}} className="cursor-pointer">Menu</BreadcrumbLink>
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
@@ -44,7 +40,7 @@ const OrderSummary = () => {
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
-                            <BreadcrumbLink>Checkout</BreadcrumbLink>
+                            <BreadcrumbLink className= "pointer-events-none">Checkout</BreadcrumbLink>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
@@ -57,7 +53,6 @@ const OrderSummary = () => {
                     {cartItems.map((item) => {
                         const inCart = cartItems.find(cartItem => cartItem._id === item._id);
                         const quantity = inCart ? inCart.quantity : 0;
-                        console.log(item._id)
                         return (
                             <div key={item.id} className="h-24 border-b border-[#DBD1DE] relative flex flex-col gap-1 py-4">
                                 <div className='text-md font-bold'>{item.name}</div>
@@ -94,7 +89,8 @@ const OrderSummary = () => {
                             </div>
                         )
                     })}
-                    <button className='h-12 text-[12px] text-mainBlue font-bold flex items-center justify-end' onClick={handleOnClick}>
+                    <button className='h-12 text-[12px] text-mainBlue font-bold flex items-center justify-end' onClick={() => { navigate(`/advert/${id}`) }
+                    }>
                         <Plus className='size-5' /> Add more items
                     </button>
                 </div>

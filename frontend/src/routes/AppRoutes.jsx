@@ -13,9 +13,7 @@ import { AnimatePresence } from "framer-motion";
 import PageWrapper from "@/components/ui/animation/PageWrapper";
 
 // TODO: Import pages here
-import { HomePage, LoginPage, SignUpPage, LandingPage } from "@/pages";
-import AdvertPage from "@/pages/AdvertPage/AdvertPage";
-import OrderSummary from "@/pages/OrderSummary/OrderSummary";
+import { HomePage, LoginPage, SignUpPage, LandingPage, AdvertPage, OrderSummary, CheckoutPage } from "@/pages";
 
 // AppRoutes Component
 const AppRoutes = () => {
@@ -28,6 +26,7 @@ const AppRoutes = () => {
   const signUpPageRoute = "/signup";
   const advertPageRoute = "/advert/:id";
   const orderSummaryRoute = "/order-summary/:id";
+  const checkoutPageRoute = "/checkout/:id";
 
   useEffect(() => {
     checkAuth();
@@ -92,6 +91,19 @@ const AppRoutes = () => {
                   )
                 }
               />
+              <Route
+                path={checkoutPageRoute}
+                element={
+                  user ? (
+                    <PageWrapper>
+                      <CheckoutPage />
+                    </PageWrapper>
+                  ) : (
+                    <Navigate to={loginPageRoute} />
+                  )
+                }
+              />
+              // Login and Signup Routes
               <Route
                 path={loginPageRoute}
                 element={

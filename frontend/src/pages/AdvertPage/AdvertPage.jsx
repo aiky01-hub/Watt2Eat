@@ -110,7 +110,7 @@ const AdvertPage = () => {
 
       {/* Footer */}
       {cartItems.length > 0 && (
-        <button className="absolute bottom-0 left-0 w-full bg-mainBlue text-white flex justify-center gap-12 items-center px-6 py-3 font-poppins rounded-t-lg font-bold text-sm" onClick={handleClick}>
+        <button className="sticky bottom-0 left-0 w-full bg-mainBlue text-white flex justify-center gap-12 items-center px-6 py-3 font-poppins rounded-t-lg font-bold text-sm" onClick={handleClick}>
           <div className="bg-logoOrange rounded-full px-3 py-1 text-mainBlue">
             {
               cartItems.reduce((total, item) => total + item.quantity, 0)
